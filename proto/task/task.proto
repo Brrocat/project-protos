@@ -5,6 +5,7 @@ option go_package = "github.com/Brrocat/project-protos/proto/task";
 message Task {
   uint32 id = 1;
   string title = 2;
+  uint32 user_id = 3;
 }
 
 message CreateTaskRequest {
