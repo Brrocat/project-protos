@@ -42,10 +42,17 @@ message ListTaskResponse {
   repeated Task tasks = 1;
 }
 
+message ListUserTasksRequest {
+  uint32 user_id =1;
+  uint32 limit = 2;
+  uint32 offset = 3;
+}
+
 service TaskService {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask (Task) returns (Task);
   rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
   rpc ListTasks (ListTaskRequest) returns (ListTaskResponse);
+  rpc ListUserTasks(ListUserTasksRequest) returns (ListTaskResponse);
 }

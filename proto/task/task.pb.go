@@ -449,6 +449,66 @@ func (x *ListTaskResponse) GetTasks() []*Task {
 	return nil
 }
 
+type ListUserTasksRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        uint32                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Limit         uint32                 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        uint32                 `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListUserTasksRequest) Reset() {
+	*x = ListUserTasksRequest{}
+	mi := &file_proto_task_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListUserTasksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListUserTasksRequest) ProtoMessage() {}
+
+func (x *ListUserTasksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_task_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListUserTasksRequest.ProtoReflect.Descriptor instead.
+func (*ListUserTasksRequest) Descriptor() ([]byte, []int) {
+	return file_proto_task_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListUserTasksRequest) GetUserId() uint32 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *ListUserTasksRequest) GetLimit() uint32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListUserTasksRequest) GetOffset() uint32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 var File_proto_task_proto protoreflect.FileDescriptor
 
 const file_proto_task_proto_rawDesc = "" +
@@ -478,7 +538,11 @@ const file_proto_task_proto_rawDesc = "" +
 	"\x06offset\x18\x03 \x01(\rR\x06offset\"4\n" +
 	"\x10ListTaskResponse\x12 \n" +
 	"\x05tasks\x18\x01 \x03(\v2\n" +
-	".task.TaskR\x05tasks2\xaf\x02\n" +
+	".task.TaskR\x05tasks\"]\n" +
+	"\x14ListUserTasksRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\rR\x06userId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\rR\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\rR\x06offset2\xf4\x02\n" +
 	"\vTaskService\x12?\n" +
 	"\n" +
 	"CreateTask\x12\x17.task.CreateTaskRequest\x1a\x18.task.CreateTaskResponse\x12!\n" +
@@ -489,7 +553,8 @@ const file_proto_task_proto_rawDesc = "" +
 	"UpdateTask\x12\x17.task.UpdateTaskRequest\x1a\x18.task.UpdateTaskResponse\x12?\n" +
 	"\n" +
 	"DeleteTask\x12\x17.task.DeleteTaskRequest\x1a\x18.task.DeleteTaskResponse\x12:\n" +
-	"\tListTasks\x12\x15.task.ListTaskRequest\x1a\x16.task.ListTaskResponseB.Z,github.com/Brrocat/project-protos/proto/taskb\x06proto3"
+	"\tListTasks\x12\x15.task.ListTaskRequest\x1a\x16.task.ListTaskResponse\x12C\n" +
+	"\rListUserTasks\x12\x1a.task.ListUserTasksRequest\x1a\x16.task.ListTaskResponseB.Z,github.com/Brrocat/project-protos/proto/taskb\x06proto3"
 
 var (
 	file_proto_task_proto_rawDescOnce sync.Once
@@ -503,17 +568,18 @@ func file_proto_task_proto_rawDescGZIP() []byte {
 	return file_proto_task_proto_rawDescData
 }
 
-var file_proto_task_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_proto_task_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_proto_task_proto_goTypes = []any{
-	(*Task)(nil),               // 0: task.Task
-	(*CreateTaskRequest)(nil),  // 1: task.CreateTaskRequest
-	(*CreateTaskResponse)(nil), // 2: task.CreateTaskResponse
-	(*UpdateTaskRequest)(nil),  // 3: task.UpdateTaskRequest
-	(*UpdateTaskResponse)(nil), // 4: task.UpdateTaskResponse
-	(*DeleteTaskRequest)(nil),  // 5: task.DeleteTaskRequest
-	(*DeleteTaskResponse)(nil), // 6: task.DeleteTaskResponse
-	(*ListTaskRequest)(nil),    // 7: task.ListTaskRequest
-	(*ListTaskResponse)(nil),   // 8: task.ListTaskResponse
+	(*Task)(nil),                 // 0: task.Task
+	(*CreateTaskRequest)(nil),    // 1: task.CreateTaskRequest
+	(*CreateTaskResponse)(nil),   // 2: task.CreateTaskResponse
+	(*UpdateTaskRequest)(nil),    // 3: task.UpdateTaskRequest
+	(*UpdateTaskResponse)(nil),   // 4: task.UpdateTaskResponse
+	(*DeleteTaskRequest)(nil),    // 5: task.DeleteTaskRequest
+	(*DeleteTaskResponse)(nil),   // 6: task.DeleteTaskResponse
+	(*ListTaskRequest)(nil),      // 7: task.ListTaskRequest
+	(*ListTaskResponse)(nil),     // 8: task.ListTaskResponse
+	(*ListUserTasksRequest)(nil), // 9: task.ListUserTasksRequest
 }
 var file_proto_task_proto_depIdxs = []int32{
 	0, // 0: task.CreateTaskResponse.task:type_name -> task.Task
@@ -524,13 +590,15 @@ var file_proto_task_proto_depIdxs = []int32{
 	3, // 5: task.TaskService.UpdateTask:input_type -> task.UpdateTaskRequest
 	5, // 6: task.TaskService.DeleteTask:input_type -> task.DeleteTaskRequest
 	7, // 7: task.TaskService.ListTasks:input_type -> task.ListTaskRequest
-	2, // 8: task.TaskService.CreateTask:output_type -> task.CreateTaskResponse
-	0, // 9: task.TaskService.GetTask:output_type -> task.Task
-	4, // 10: task.TaskService.UpdateTask:output_type -> task.UpdateTaskResponse
-	6, // 11: task.TaskService.DeleteTask:output_type -> task.DeleteTaskResponse
-	8, // 12: task.TaskService.ListTasks:output_type -> task.ListTaskResponse
-	8, // [8:13] is the sub-list for method output_type
-	3, // [3:8] is the sub-list for method input_type
+	9, // 8: task.TaskService.ListUserTasks:input_type -> task.ListUserTasksRequest
+	2, // 9: task.TaskService.CreateTask:output_type -> task.CreateTaskResponse
+	0, // 10: task.TaskService.GetTask:output_type -> task.Task
+	4, // 11: task.TaskService.UpdateTask:output_type -> task.UpdateTaskResponse
+	6, // 12: task.TaskService.DeleteTask:output_type -> task.DeleteTaskResponse
+	8, // 13: task.TaskService.ListTasks:output_type -> task.ListTaskResponse
+	8, // 14: task.TaskService.ListUserTasks:output_type -> task.ListTaskResponse
+	9, // [9:15] is the sub-list for method output_type
+	3, // [3:9] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -547,7 +615,7 @@ func file_proto_task_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_task_proto_rawDesc), len(file_proto_task_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
